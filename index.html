@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analiză Profil: _.kseniyaaa._</title>
+    <style>
+        :root {
+            --danger: #ff4b2b;
+            --soft-pink: #ffafbd;
+            --deep-purple: #2c3e50;
+            --accent: #ffc3a0;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #0f0f0f;
+            color: white;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Screen 1: Loading/Scanning */
+        #scanner-screen {
+            text-align: center;
+            z-index: 10;
+        }
+
+        .scan-line {
+            width: 300px;
+            height: 2px;
+            background: var(--danger);
+            box-shadow: 0 0 15px var(--danger);
+            position: relative;
+            animation: scan 2s infinite ease-in-out;
+        }
+
+        @keyframes scan {
+            0%, 100% { top: 0; }
+            50% { top: 200px; }
+        }
+
+        /* Screen 2: Fake Warning */
+        #warning-screen {
+            display: none;
+            text-align: center;
+            color: var(--danger);
+            padding: 20px;
+        }
+
+        .alert-box {
+            border: 2px solid var(--danger);
+            padding: 20px;
+            background: rgba(255, 75, 43, 0.1);
+            border-radius: 10px;
+            animation: blink 0.5s infinite alternate;
+        }
+
+        @keyframes blink {
+            from { opacity: 1; }
+            to { opacity: 0.7; }
+        }
+
+        /* Screen 3: The Reveal (Gingaș) */
+        #reveal-screen {
+            display: none;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeIn 2s ease;
+        }
+
+        h1 { margin-bottom: 10px; font-size: 1.8rem; }
+        p { line-height: 1.6; font-size: 1.1rem; color: #eee; }
+
+        .insta-handle {
+            color: var(--soft-pink);
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px solid var(--soft-pink);
+        }
+
+        .heart {
+            color: var(--danger);
+            font-size: 2rem;
+            margin-top: 20px;
+            display: block;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn {
+            margin-top: 25px;
+            background: linear-gradient(45deg, var(--soft-pink), var(--accent));
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            color: #333;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(255, 175, 189, 0.4); }
+    </style>
+</head>
+<body>
+
+    <!-- SCREEN 1: SCANNING -->
+    <div id="scanner-screen">
+        <div style="height: 200px; width: 300px; border: 1px solid #333; position: relative;">
+            <div class="scan-line"></div>
+        </div>
+        <p>Se analizează profilul <span style="color:var(--soft-pink)">_.kseniyaaa._</span>...</p>
+    </div>
+
+    <!-- SCREEN 2: FAKE INFO -->
+    <div id="warning-screen">
+        <div class="alert-box">
+            <h2>⚠️ ALERTĂ: ACTIVITATE ILEGALĂ</h2>
+            <p>S-a detectat că utilizatorul <strong>_.kseniyaaa._</strong> deține un algoritm secret de manipulare a atenției prin privire.</p>
+            <button class="btn" onclick="showFinal()">Vezi detalii dosar</button>
+        </div>
+    </div>
+
+    <!-- SCREEN 3: REVEAL -->
+    <div id="reveal-screen">
+        <h1>Glumeam! 😄</h1>
+        <p>
+            Singura „problemă” reală pe care am găsit-o analizând profilul tău este că... mi-a luat mult prea mult timp să-mi revin după ce l-am vizitat.
+        </p>
+        <p>
+            <a href="https://www.instagram.com/_.kseniyaaa._/" class="insta-handle">_.kseniyaaa._</a>, am rămas sincer uimit. Ai o eleganță naturală care rar se mai găsește și o energie în poze care transmite mai mult decât o mie de cuvinte. 
+        </p>
+        <p>Ești pur și simplu... <i>luminoasă</i>.</p>
+        <span class="heart">❤</span>
+        <button class="btn" onclick="location.reload()">Mai scanează o dată?</button>
+    </div>
+
+    <script>
+        // Logică pentru tranziții
+        setTimeout(() => {
+            document.getElementById('scanner-screen').style.display = 'none';
+            document.getElementById('warning-screen').style.display = 'block';
+            document.body.style.background = "#1a0505"; // Fundal roșiatic pentru alertă
+        }, 3500);
+
+        function showFinal() {
+            document.getElementById('warning-screen').style.display = 'none';
+            document.getElementById('reveal-screen').style.display = 'block';
+            document.body.style.background = "linear-gradient(135deg, #2c3e50, #000000)"; 
+        }
+    </script>
+</body>
+</html>

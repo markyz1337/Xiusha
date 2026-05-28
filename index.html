@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>✨ Ksiușca ✨</title>
+<title>✨ Ksiușca ✨ - Xenia</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -20,14 +20,14 @@
     --gold: #d4a0b0;
   }
 
-- { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
 
 body {
-font-family: ‘Lato’, sans-serif;
-background: var(–pink-light);
-color: var(–text);
+font-family: 'Lato', sans-serif;
+background: var(--pink-light);
+color: var(--text);
 overflow-x: hidden;
 cursor: none;
 }
@@ -36,7 +36,7 @@ cursor: none;
 .cursor {
 position: fixed;
 width: 12px; height: 12px;
-background: var(–pink-main);
+background: var(--pink-main);
 border-radius: 50%;
 pointer-events: none;
 z-index: 99999;
@@ -46,7 +46,7 @@ mix-blend-mode: multiply;
 .cursor-trail {
 position: fixed;
 width: 30px; height: 30px;
-border: 1.5px solid var(–pink-main);
+border: 1.5px solid var(--pink-main);
 border-radius: 50%;
 pointer-events: none;
 z-index: 99998;
@@ -83,7 +83,7 @@ overflow: hidden;
 }
 
 .hero::before {
-content: ‘’;
+content: '';
 position: absolute;
 inset: 0;
 background:
@@ -129,10 +129,10 @@ display: block;
 }
 
 .hero h1 {
-font-family: ‘Dancing Script’, cursive;
+font-family: 'Dancing Script', cursive;
 font-size: clamp(3.5rem, 10vw, 7rem);
 font-weight: 700;
-background: linear-gradient(135deg, var(–pink-deep) 0%, var(–pink-main) 50%, #ff80ab 100%);
+background: linear-gradient(135deg, var(--pink-deep) 0%, var(--pink-main) 50%, #ff80ab 100%);
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
 background-clip: text;
@@ -142,33 +142,54 @@ animation: fadeSlideUp 1s ease both;
 }
 
 .hero-subtitle {
-font-family: ‘Playfair Display’, serif;
+font-family: 'Playfair Display', serif;
 font-size: clamp(1rem, 3vw, 1.5rem);
-color: var(–pink-deep);
+color: var(--pink-deep);
 font-style: italic;
 opacity: 0.8;
 margin-bottom: 2rem;
 animation: fadeSlideUp 1s ease 0.3s both;
 }
 
+.info-card {
+background: rgba(255,255,255,0.8);
+border-radius: 20px;
+padding: 1.5rem;
+margin: 1rem auto;
+max-width: 600px;
+box-shadow: 0 4px 20px rgba(233,30,140,0.1);
+border: 1px solid rgba(233,30,140,0.15);
+animation: fadeSlideUp 1s ease 0.6s both;
+}
+.info-card p {
+font-size: 0.9rem;
+color: var(--text);
+line-height: 1.8;
+margin: 0.5rem 0;
+}
+.info-card .label {
+font-weight: 600;
+color: var(--pink-deep);
+}
+
 .scroll-hint {
 margin-top: 3rem;
-animation: fadeSlideUp 1s ease 0.6s both;
+animation: fadeSlideUp 1s ease 0.8s both;
 }
 .scroll-hint span {
 display: block;
-font-family: ‘Lato’, sans-serif;
+font-family: 'Lato', sans-serif;
 font-size: 0.75rem;
 letter-spacing: 0.3em;
 text-transform: uppercase;
-color: var(–pink-main);
+color: var(--pink-main);
 margin-bottom: 0.5rem;
 }
 .scroll-arrow {
 display: inline-block;
 width: 2px;
 height: 40px;
-background: linear-gradient(to bottom, var(–pink-main), transparent);
+background: linear-gradient(to bottom, var(--pink-main), transparent);
 animation: scrollAnim 1.5s ease-in-out infinite;
 }
 @keyframes scrollAnim {
@@ -189,19 +210,19 @@ margin: 0 auto;
 }
 
 .section-title {
-font-family: ‘Dancing Script’, cursive;
+font-family: 'Dancing Script', cursive;
 font-size: clamp(2rem, 6vw, 3.5rem);
-color: var(–pink-deep);
+color: var(--pink-deep);
 text-align: center;
 margin-bottom: 3rem;
 position: relative;
 }
 .section-title::after {
-content: ‘’;
+content: '';
 display: block;
 width: 80px;
 height: 2px;
-background: linear-gradient(to right, transparent, var(–pink-main), transparent);
+background: linear-gradient(to right, transparent, var(--pink-main), transparent);
 margin: 0.5rem auto 0;
 }
 
@@ -236,11 +257,11 @@ box-shadow: 0 15px 40px rgba(233,30,140,0.18);
 border-color: rgba(233,30,140,0.3);
 }
 .card::before {
-content: ‘’;
+content: '';
 position: absolute;
 top: 0; left: 0; right: 0;
 height: 3px;
-background: linear-gradient(to right, var(–pink-soft), var(–pink-main), var(–pink-soft));
+background: linear-gradient(to right, var(--pink-soft), var(--pink-main), var(--pink-soft));
 }
 
 .card-icon {
@@ -249,9 +270,9 @@ margin-bottom: 0.8rem;
 display: block;
 }
 .card h3 {
-font-family: ‘Playfair Display’, serif;
+font-family: 'Playfair Display', serif;
 font-size: 1.1rem;
-color: var(–pink-deep);
+color: var(--pink-deep);
 margin-bottom: 0.5rem;
 }
 .card p {
@@ -263,14 +284,14 @@ color: #6d4a57;
 /* QUOTE BLOCK */
 .quote-block {
 background: linear-gradient(135deg, #fce4ec, #fff0f5);
-border-left: 4px solid var(–pink-main);
+border-left: 4px solid var(--pink-main);
 border-radius: 0 20px 20px 0;
 padding: 2rem 2.5rem;
 margin: 2rem 0;
-font-family: ‘Playfair Display’, serif;
+font-family: 'Playfair Display', serif;
 font-size: 1.1rem;
 font-style: italic;
-color: var(–dark);
+color: var(--dark);
 line-height: 1.8;
 position: relative;
 opacity: 0;
@@ -282,27 +303,27 @@ opacity: 1;
 transform: translateX(0);
 }
 .quote-block::before {
-content: ‘”’;
+content: '"';
 position: absolute;
 top: -10px; left: 15px;
 font-size: 5rem;
-color: var(–pink-soft);
-font-family: ‘Dancing Script’, cursive;
+color: var(--pink-soft);
+font-family: 'Dancing Script', cursive;
 line-height: 1;
 }
 
 /* PERSONALITY SECTION */
 .personality-full {
-background: linear-gradient(135deg, var(–dark) 0%, #1a0a10 100%);
+background: linear-gradient(135deg, var(--dark) 0%, #1a0a10 100%);
 border-radius: 30px;
 padding: 4rem 3rem;
-color: var(–pink-blush);
+color: var(--pink-blush);
 position: relative;
 overflow: hidden;
 margin: 3rem 0;
 }
 .personality-full::before {
-content: ‘’;
+content: '';
 position: absolute;
 inset: 0;
 background:
@@ -364,9 +385,9 @@ gap: 3rem;
 @media (max-width: 600px) { .dual-list { grid-template-columns: 1fr; } }
 
 .list-col h3 {
-font-family: ‘Dancing Script’, cursive;
+font-family: 'Dancing Script', cursive;
 font-size: 1.6rem;
-color: var(–pink-main);
+color: var(--pink-main);
 margin-bottom: 1.2rem;
 display: flex;
 align-items: center;
@@ -381,11 +402,11 @@ font-size: 0.9rem;
 display: flex;
 align-items: center;
 gap: 0.5rem;
-color: var(–text);
+color: var(--text);
 transition: color 0.3s;
 }
-.fancy-list li:hover { color: var(–pink-main); }
-.fancy-list li::before { content: ‘🌸’; font-size: 0.7rem; }
+.fancy-list li:hover { color: var(--pink-main); }
+.fancy-list li::before { content: '🌸'; font-size: 0.7rem; }
 
 /* LOVE LANGUAGES */
 .love-section {
@@ -407,7 +428,7 @@ border: 1.5px solid rgba(233,30,140,0.2);
 border-radius: 50px;
 padding: 0.6rem 1.4rem;
 font-size: 0.85rem;
-color: var(–pink-deep);
+color: var(--pink-deep);
 cursor: default;
 transition: all 0.3s ease;
 opacity: 0;
@@ -421,9 +442,9 @@ animation: tagPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 to { opacity: 1; transform: scale(1); }
 }
 .love-tag:hover {
-background: var(–pink-main);
+background: var(--pink-main);
 color: white;
-border-color: var(–pink-main);
+border-color: var(--pink-main);
 transform: scale(1.05);
 box-shadow: 0 6px 20px rgba(233,30,140,0.25);
 }
@@ -439,7 +460,7 @@ overflow: hidden;
 margin: 3rem 0;
 }
 .letter-section::before {
-content: ‘💌’;
+content: '💌';
 position: absolute;
 font-size: 15rem;
 opacity: 0.04;
@@ -448,19 +469,19 @@ left: 50%;
 transform: translate(-50%, -50%);
 }
 .letter-section p {
-font-family: ‘Playfair Display’, serif;
+font-family: 'Playfair Display', serif;
 font-size: 1.05rem;
 line-height: 2;
-color: var(–dark);
+color: var(--dark);
 max-width: 700px;
 margin: 0 auto 1.5rem;
 position: relative;
 z-index: 1;
 }
 .letter-sig {
-font-family: ‘Dancing Script’, cursive;
+font-family: 'Dancing Script', cursive;
 font-size: 2rem;
-color: var(–pink-main);
+color: var(--pink-main);
 position: relative;
 z-index: 1;
 }
@@ -491,9 +512,9 @@ box-shadow: 0 12px 30px rgba(233,30,140,0.15);
 .vibe-card .vibe-emoji { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
 .vibe-card .vibe-text { font-size: 0.8rem; color: #8b5a6e; line-height: 1.4; }
 .vibe-card .vibe-label {
-font-family: ‘Playfair Display’, serif;
+font-family: 'Playfair Display', serif;
 font-size: 0.95rem;
-color: var(–pink-deep);
+color: var(--pink-deep);
 font-weight: 600;
 margin-bottom: 0.3rem;
 }
@@ -522,7 +543,7 @@ overflow: hidden;
 .star {
 position: absolute;
 width: 3px; height: 3px;
-background: var(–pink-main);
+background: var(--pink-main);
 border-radius: 50%;
 opacity: 0;
 animation: twinkle 4s ease-in-out infinite;
@@ -560,7 +581,7 @@ transition: all 0.3s ease;
 }
 .emoji-frame:hover {
 transform: rotate(-3deg) scale(1.05);
-border-color: var(–pink-main);
+border-color: var(--pink-main);
 }
 .emoji-frame .ef-icon { font-size: 2.5rem; }
 .emoji-frame .ef-text { font-size: 0.65rem; color: #9b6a7e; text-align: center; line-height: 1.3; }
@@ -572,9 +593,9 @@ display: flex;
 justify-content: space-between;
 margin-bottom: 0.4rem;
 font-size: 0.85rem;
-color: var(–text);
+color: var(--text);
 }
-.progress-label span:last-child { color: var(–pink-main); font-weight: 600; }
+.progress-label span:last-child { color: var(--pink-main); font-weight: 600; }
 .progress-bar {
 height: 6px;
 background: #fce4ec;
@@ -584,7 +605,7 @@ overflow: hidden;
 .progress-fill {
 height: 100%;
 border-radius: 10px;
-background: linear-gradient(to right, var(–pink-soft), var(–pink-main));
+background: linear-gradient(to right, var(--pink-soft), var(--pink-main));
 width: 0;
 transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -601,7 +622,7 @@ position: absolute;
 bottom: 120%;
 left: 50%;
 transform: translateX(-50%);
-background: var(–dark);
+background: var(--dark);
 color: #ffd6e7;
 padding: 0.6rem 1rem;
 border-radius: 10px;
@@ -629,7 +650,7 @@ flex-wrap: wrap;
 }
 nav a {
 text-decoration: none;
-color: var(–pink-deep);
+color: var(--pink-deep);
 font-size: 0.75rem;
 letter-spacing: 0.1em;
 text-transform: uppercase;
@@ -639,7 +660,7 @@ transition: all 0.3s ease;
 font-weight: 600;
 }
 nav a:hover {
-background: var(–pink-main);
+background: var(--pink-main);
 color: white;
 }
 
@@ -647,14 +668,14 @@ color: white;
 footer {
 text-align: center;
 padding: 4rem 2rem 2rem;
-background: var(–dark);
+background: var(--dark);
 color: #8b5a6e;
 font-size: 0.85rem;
 position: relative;
 overflow: hidden;
 }
 footer::before {
-content: ‘’;
+content: '';
 position: absolute;
 inset: 0;
 background: radial-gradient(ellipse at 50% 0%, rgba(233,30,140,0.1) 0%, transparent 60%);
@@ -692,11 +713,9 @@ nav { gap: 0.3rem; }
 <div class="cursor-trail" id="cursorTrail"></div>
 
 <!-- Stars Background -->
-
 <div class="stars-bg" id="stars"></div>
 
 <!-- NAV -->
-
 <nav>
   <a href="#intro">Intro</a>
   <a href="#flori">Flori</a>
@@ -705,11 +724,11 @@ nav { gap: 0.3rem; }
   <a href="#filme">Filme</a>
   <a href="#muzica">Muzică</a>
   <a href="#iubire">Iubire</a>
+  <a href="#extra">Extra</a>
   <a href="#litera">Scrisoare</a>
 </nav>
 
 <!-- HERO -->
-
 <section class="hero" id="intro" style="max-width:100%; padding-top: 5rem;">
   <div class="floating-flowers">
     <span class="ff">🌸</span>
@@ -724,9 +743,20 @@ nav { gap: 0.3rem; }
   <span class="hero-emoji">🌸</span>
   <h1>Ksiușca</h1>
   <p class="hero-subtitle">sau Ksiunea, o pisicuță în suflet 🐾</p>
+  
+  <div class="info-card">
+    <p><span class="label">📛 Nume:</span> Xenia (Xiuș, Xiușca, Ksiunea, Ksiușca)</p>
+    <p><span class="label">🎂 Născută:</span> 4 mai — Taur ♉</p>
+    <p><span class="label">👁️ Ochii:</span> Căprui</p>
+    <p><span class="label">🏫 Studiază la:</span> Universitatea de Stat de Medicină și Farmacie Nicolae Testemițanu, Republica Moldova</p>
+    <p><span class="label">👨‍👩‍👧 Familie:</span> Tatăl: Victor | Familia: Cozmic</p>
+    <p><span class="label">🐱 Pisica:</span> Agresiv-pasivă, le-a încălzit pe toți cu preocuparea ei</p>
+  </div>
+
   <p style="font-family:'Lato',sans-serif; font-size:0.9rem; color: var(--pink-deep); opacity:0.7; max-width:500px; line-height:1.8; animation: fadeSlideUp 1s ease 0.5s both;">
     Știu că în spatele fiecărui „mulțumesc" pentru un compliment se ascunde o fetiță extrem de fericită. Deci... am scris asta pentru tine. ✨
   </p>
+  
   <div class="scroll-hint">
     <span>Derulează în jos</span>
     <div class="scroll-arrow"></div>
@@ -734,7 +764,6 @@ nav { gap: 0.3rem; }
 </section>
 
 <!-- FLOWERS -->
-
 <section id="flori">
   <h2 class="section-title reveal">Florile tale 🌷</h2>
   <div class="cards-grid">
@@ -778,27 +807,26 @@ nav { gap: 0.3rem; }
 <div class="flower-divider">🌸 🌷 🌸 🌷 🌸</div>
 
 <!-- VIBES -->
-
 <section id="vibes" style="max-width:100%; background: linear-gradient(135deg, #fff5f8, white); padding: 5rem 2rem;">
   <div style="max-width:1100px; margin:0 auto;">
     <h2 class="section-title reveal">Vibe-ul tău 🎀</h2>
     <div class="vibes-grid">
-      <div class="vibe-card"><span class="vibe-emoji">☕</span><div class="vibe-label">Cafea de dimineață</div><div class="vibe-text">Nu-i opțional. E ritual sacru.</div></div>
-      <div class="vibe-card"><span class="vibe-emoji">📚</span><div class="vibe-label">Cărți</div><div class="vibe-text">Fall in love again and again — cu fiecare pagină.</div></div>
-      <div class="vibe-card"><span class="vibe-emoji">🌅</span><div class="vibe-label">Sunsetaholică</div><div class="vibe-text">Apusurile nu-s clișeu pentru tine. Sunt un moment al tău.</div></div>
-      <div class="vibe-card"><span class="vibe-emoji">🌧️</span><div class="vibe-label">Ploaie + ceai</div><div class="vibe-text">Fereastră deschisă, muzică în fundal. Paradis.</div></div>
-      <div class="vibe-card"><span class="vibe-emoji">🐱</span><div class="vibe-label">Pisici</div><div class="vibe-text">Prima iubire a fost o pisică. Scottish Fold, pariez. Pufoas pufoas.</div></div>
-      <div class="vibe-card"><span class="vibe-emoji">🌙</span><div class="vibe-label">Noaptea ești tu</div><div class="vibe-text">Momentul când adevărata Ksiușca iese la iveală.</div></div>
-      <div class="vibe-card"><span class="vibe-emoji">🎠</span><div class="vibe-label">Lego</div><div class="vibe-text">Da, Lego. Și este absolut adorabil.</div></div>
-      <div class="vibe-card"><span class="vibe-emoji">🍟</span><div class="vibe-label">Cartofi fry</div><div class="vibe-text">Nu îi judecă nimeni. Gustul copilăriei.</div></div>
-      <div class="vibe-card"><span class="vibe-emoji">🍑</span><div class="vibe-label">Fructe</div><div class="vibe-text">Le iubești. Piersici, căpșuni, tot. Ai auzit de fructe liofilizate?</div></div>
-      <div class="vibe-card"><span class="vibe-emoji">🍫</span><div class="vibe-label">Kinder-aholică</div><div class="vibe-text">Orice dorință pentru un Kinder Bueno. 😄</div></div>
-      <div class="vibe-card"><span class="vibe-emoji">🏕️</span><div class="vibe-label">Cabane & natură</div><div class="vibe-text">Departe de lume. Doar tu și ce iubești.</div></div>
-      <div class="vibe-card"><span class="vibe-emoji">🎨</span><div class="vibe-label">Pinterest</div><div class="vibe-text">Oare ce colecții secrete ascunzi acolo? 🤔</div></div>
-      <div class="vibe-card"><span class="vibe-emoji">🧸</span><div class="vibe-label">Mansardă cu stele</div><div class="vibe-text">Geamul lângă pat. Stelele de sus. Patul cald de jos.</div></div>
-      <div class="vibe-card"><span class="vibe-emoji">🎡</span><div class="vibe-label">Lumină ambientală</div><div class="vibe-text">Nu întuneric total, nu lumină plină. Exact la mijloc.</div></div>
-      <div class="vibe-card"><span class="vibe-emoji">🦋</span><div class="vibe-label">Parfumuri</div><div class="vibe-text">Vrei să le încerci pe toate. Cred că miroși extraordinar.</div></div>
-      <div class="vibe-card"><span class="vibe-emoji">🛏️</span><div class="vibe-label">Dormitul</div><div class="vibe-text">„Sunt ocupată" = ocupată cu ocupația preferată 😂</div></div>
+      <div class="vibe-card"><span class="vibe-emoji">☕</span><div class="vibe-label">Cafea de dimineață</div><div class="vibe-text">Rece și neagră. Dependență 99%. Nu-i opțional. E ritual sacru.</div></div>
+      <div class="vibe-card"><span class="vibe-emoji">📚</span><div class="vibe-label">Cărți</div><div class="vibe-text">Fall in love again and again — cu fiecare pagină. O carte mereu la îndemână.</div></div>
+      <div class="vibe-card"><span class="vibe-emoji">🌅</span><div class="vibe-label">Sunsetaholică</div><div class="vibe-text">Apusurile nu-s clișeu pentru tine. Sunt un moment al tău. Infinit iubire.</div></div>
+      <div class="vibe-card"><span class="vibe-emoji">🌧️</span><div class="vibe-label">Ploaie + ceai</div><div class="vibe-text">Fereastră deschisă, muzică în fundal. Vânt care intră ușor. Paradis.</div></div>
+      <div class="vibe-card"><span class="vibe-emoji">🐱</span><div class="vibe-label">Pisici</div><div class="vibe-text">Scottish Fold, pufoas pufoas. Prima iubire a fost o pisică. Agresiv-pasivă.</div></div>
+      <div class="vibe-card"><span class="vibe-emoji">🌙</span><div class="vibe-label">Noaptea ești tu</div><div class="vibe-text">Momentul când adevărata Ksiușca iese la iveală. Conversații profunde. Greieri afară.</div></div>
+      <div class="vibe-card"><span class="vibe-emoji">🎠</span><div class="vibe-label">Lego</div><div class="vibe-text">Da, Lego. Și este absolut adorabil. Construiești pasiuni din blocuri.</div></div>
+      <div class="vibe-card"><span class="vibe-emoji">🍟</span><div class="vibe-label">Cartofi fry</div><div class="vibe-text">Gustul copilăriei. Nu îi judecă nimeni. Iubești liber.</div></div>
+      <div class="vibe-card"><span class="vibe-emoji">🍑</span><div class="vibe-label">Fructe</div><div class="vibe-text">Piersici, căpșuni, fructe liofilizate. Nu-ți plac merele coapte.</div></div>
+      <div class="vibe-card"><span class="vibe-emoji">🍫</span><div class="vibe-label">Kinder-aholică</div><div class="vibe-text">Kinder Bueno, Twix. Înghețata Sandra cu ciocolată. Dorință perpetuă.</div></div>
+      <div class="vibe-card"><span class="vibe-emoji">🏕️</span><div class="vibe-label">Cabane & natură</div><div class="vibe-text">Departe de lume. Doar tu și ce iubești. Izolată și fericită.</div></div>
+      <div class="vibe-card"><span class="vibe-emoji">🎨</span><div class="vibe-label">Pinterest</div><div class="vibe-text">Colecții secrete. Oare ce visuri ascunzi acolo? 🤔</div></div>
+      <div class="vibe-card"><span class="vibe-emoji">🧸</span><div class="vibe-label">Mansardă cu stele</div><div class="vibe-text">Geamul lângă pat. Stelele de sus. Patul cald de jos. Parfecțiune.</div></div>
+      <div class="vibe-card"><span class="vibe-emoji">🎡</span><div class="vibe-label">Lumină ambientală</div><div class="vibe-text">Nu întuneric total, nu lumină plină. Exact la mijloc. Armă rece: prea multă lumină = rip.</div></div>
+      <div class="vibe-card"><span class="vibe-emoji">🦋</span><div class="vibe-label">Parfumuri</div><div class="vibe-text">Vrei să le încerci pe toate. Miroși extraordinar.</div></div>
+      <div class="vibe-card"><span class="vibe-emoji">🛏️</span><div class="vibe-label">Dormitul</div><div class="vibe-text">„Sunt ocupată" = ocupată cu ocupația preferată 😂 Dormi mult. Patul e casa.</div></div>
     </div>
   </div>
 </section>
@@ -806,33 +834,33 @@ nav { gap: 0.3rem; }
 <div class="flower-divider">🌹 ✨ 🌹 ✨ 🌹</div>
 
 <!-- EMOJI STRIP -->
-
 <section style="overflow:hidden; padding: 2rem 2rem 4rem;">
   <h2 class="section-title reveal">Lucruri care te fac <em>tu</em> 🪄</h2>
   <div class="emoji-strip">
-    <div class="emoji-frame"><span class="ef-icon">🎀</span><span class="ef-text">Rozul — de la Barbie</span></div>
-    <div class="emoji-frame"><span class="ef-icon">🖤</span><span class="ef-text">Negrul — la exterior</span></div>
+    <div class="emoji-frame"><span class="ef-icon">🎀</span><span class="ef-text">Roz — interior (Barbie)</span></div>
+    <div class="emoji-frame"><span class="ef-icon">🖤</span><span class="ef-text">Negru — exterior</span></div>
     <div class="emoji-frame"><span class="ef-icon">🥗</span><span class="ef-text">Caesar cu pui</span></div>
     <div class="emoji-frame"><span class="ef-icon">🍵</span><span class="ef-text">Ceai-aholică</span></div>
-    <div class="emoji-frame"><span class="ef-icon">☕</span><span class="ef-text">Cafea rece</span></div>
+    <div class="emoji-frame"><span class="ef-icon">☕</span><span class="ef-text">Cafea rece + neagră</span></div>
     <div class="emoji-frame"><span class="ef-icon">👟</span><span class="ef-text">Sneakers</span></div>
     <div class="emoji-frame"><span class="ef-icon">💄</span><span class="ef-text">Unghii migdală</span></div>
     <div class="emoji-frame"><span class="ef-icon">📖</span><span class="ef-text">Carte mereu la îndemână</span></div>
-    <div class="emoji-frame"><span class="ef-icon">🧦</span><span class="ef-text">Acasă e bine</span></div>
     <div class="emoji-frame"><span class="ef-icon">🌊</span><span class="ef-text">Marea & Oceanul</span></div>
-    <div class="emoji-frame"><span class="ef-icon">🍝</span><span class="ef-text">Paste</span></div>
+    <div class="emoji-frame"><span class="ef-icon">🍝</span><span class="ef-text">Paste (doar un tip)</span></div>
     <div class="emoji-frame"><span class="ef-icon">🐉</span><span class="ef-text">Barbie & Disney</span></div>
-    <div class="emoji-frame"><span class="ef-icon">☁️</span><span class="ef-text">Singură pe stradă liniștită</span></div>
+    <div class="emoji-frame"><span class="ef-icon">☁️</span><span class="ef-text">Singură pe stradă</span></div>
     <div class="emoji-frame"><span class="ef-icon">🗺️</span><span class="ef-text">Călătorit mult</span></div>
     <div class="emoji-frame"><span class="ef-icon">🎪</span><span class="ef-text">Italia — visul</span></div>
     <div class="emoji-frame"><span class="ef-icon">🐎</span><span class="ef-text">Călărie — visul</span></div>
     <div class="emoji-frame"><span class="ef-icon">📷</span><span class="ef-text">Poze pentru memorii</span></div>
     <div class="emoji-frame"><span class="ef-icon">☕</span><span class="ef-text">Colecție de căni</span></div>
+    <div class="emoji-frame"><span class="ef-icon">🍰</span><span class="ef-text">Tort cu ciocolată</span></div>
+    <div class="emoji-frame"><span class="ef-icon">🏖️</span><span class="ef-text">Plajă & marin</span></div>
+    <div class="emoji-frame"><span class="ef-icon">🍫</span><span class="ef-text">Twix & Kinder</span></div>
   </div>
 </section>
 
 <!-- PERSONALITATE -->
-
 <div id="personalitate" class="full-width">
   <div class="personality-full">
     <h2 class="section-title">Sufletul tău, Xiuș 🌙</h2>
@@ -855,6 +883,8 @@ nav { gap: 0.3rem; }
       <li><span class="trait-icon">🦋</span>Înainte de familie, vrei să trăiești. Vrei să ai totul de dat, nu să dai din gol.</li>
       <li><span class="trait-icon">📚</span>Ai o prietenă căreia îi spui absolut totul. O singură prietenă — de calitate, nu de cantitate.</li>
       <li><span class="trait-icon">🌟</span>În interior ai vrea să fii auzită de cineva, chiar și fără cuvinte.</li>
+      <li><span class="trait-icon">🧿</span>Știi să apreciezi comunicarea și să rezolvi probleme, nu să fugi de ele.</li>
+      <li><span class="trait-icon">⚡</span>Bărbații te-au dezamăgit? Nu-i vina ta. Știi că iubire mai mare decât a părinților — nu există.</li>
     </ul>
   </div>
 </div>
@@ -862,111 +892,112 @@ nav { gap: 0.3rem; }
 <div class="flower-divider">🌸 💕 🌸 💕 🌸</div>
 
 <!-- FILME -->
-
 <section id="filme">
   <h2 class="section-title reveal">Filmele tale 🎬</h2>
   <div class="list-section reveal">
     <div class="dual-list">
       <div class="list-col">
-        <h3>🍿 Romántico-nostalgic</h3>
+        <h3>🍿 Romântico-nostalgic</h3>
         <ul class="fancy-list">
           <li>Bride Wars (Războiul mireselor)</li>
+          <li>The Girl Next Door</li>
           <li>Mamma Mia!</li>
           <li>The Devil Wears Prada</li>
           <li>How to Lose a Guy in 10 Days</li>
           <li>Notting Hill</li>
           <li>27 Dresses</li>
           <li>The Proposal</li>
-          <li>13 Going on 30</li>
+          <li>13 Going on 30 (Azi 13, mâine 30)</li>
           <li>A Cinderella Story</li>
           <li>The Ugly Truth</li>
           <li>Pride & Prejudice</li>
-          <li>The Notebook</li>
-          <li>Serendipity 💛</li>
+          <li>The Notebook 💕</li>
+          <li>Serendipity 💛 (dolar cu destin)</li>
         </ul>
       </div>
       <div class="list-col">
-        <h3>🎪 Animații & nostalgie</h3>
+        <h3>🎪 Animații & Disney</h3>
         <ul class="fancy-list">
           <li>Barbie & cele 12 prințese 👑</li>
+          <li>Barbie & cele 12 dansatoare</li>
           <li>Monsters Corporation 💚</li>
           <li>Lilo & Stitch 🌺</li>
           <li>Deasupra Tuturor (ocean!) 🌊</li>
           <li>Belle și Bestia (Tu ești Belle) 🌹</li>
           <li>Stranger Things (ultimul sezon!) 🔴</li>
           <li>Seriale turcești (Hande Erçel 🌹)</li>
-          <li>Victorious / iCarly / Winx</li>
+          <li>Victorious / iCarly / Winx 💜</li>
           <li>Familia Thunderman</li>
           <li>Big Time Rush 🎸</li>
           <li>Filme de Crăciun americane 🎄</li>
-          <li>Bibi și Tina (cu Amadeus & Sabrina) 🐴</li>
+          <li>Bibi și Tina (Amadeus & Sabrina) 🐴</li>
+          <li>Violetta</li>
+          <li>Off Campus</li>
+          <li>Dodgerfox</li>
         </ul>
       </div>
     </div>
   </div>
   <div class="quote-block reveal">
-    Filmul Serendipity — datele de contact scrise pe un dolar, lăsând destinul să decidă. Conceptul acesta te fascinează și te pune în stres în același timp 😂. Dar dacă nu ajungea dolarul???
+    Filmul Serendipity — datele de contact scrise pe un dolar, lăsând destinul să decidă dacă se vor reîntâlni. Conceptul acesta te fascinează și te pune în stres în același timp 😂. Dar dacă nu ajungea dolarul???
+  </div>
+  <div class="quote-block reveal" style="border-left-color: var(--pink-deep);">
+    The Notebook — faptul că cineva poate iubi cu așa intensitate și răbdare. Faptul că ar putea exista așa ceva și nici să nu-ți dai seama că e aproape. Viața e imprevizibilă, trebuie să ai credință.
   </div>
 </section>
 
 <!-- MUZICA -->
-
 <section id="muzica" style="max-width:100%; background: linear-gradient(135deg, #fff0f5, #fce4ec); padding: 5rem 2rem;">
   <div style="max-width:1100px; margin:0 auto;">
     <h2 class="section-title reveal">Muzica ta 🎵</h2>
+    <div class="list-section reveal">
+      <div class="dual-list">
+        <div class="list-col">
+          <h3>🎶 Artiștii tăi</h3>
+          <ul class="fancy-list">
+            <li>Basta</li>
+            <li>Guf</li>
+            <li>Dorna</li>
+            <li>Navai</li>
+            <li>The Motans 🖤</li>
+            <li>Taylor Swift 🐍</li>
+            <li>Shawn Mendes (Stitches, Treat You Better)</li>
+            <li>One Direction 💕</li>
+            <li>Big Time Rush</li>
+            <li>Adele — Love in the Dark 💔</li>
+            <li>Muzică la pian 🎹</li>
+            <li>Muzică veche / retro</li>
+          </ul>
+        </div>
+        <div class="list-col">
+          <h3>✨ Capodrele tale</h3>
+          <ul class="fancy-list">
+            <li>The Motans — „Înainte să ne fi născut" 💫</li>
+            <li>Adele — muzică cu înțeles real</li>
+            <li>Sunetul greierilor noaptea 🌙</li>
+            <li>Sunete de natură</li>
+            <li>Muzică pe fundal — ploaie, ceai, fereastră</li>
+            <li>Cafeaua rece + playlist chill ☕</li>
+          </ul>
 
-```
-<div class="list-section reveal">
-  <div class="dual-list">
-    <div class="list-col">
-      <h3>🎶 Artiștii tăi</h3>
-      <ul class="fancy-list">
-        <li>Basta</li>
-        <li>Guf</li>
-        <li>Dorna</li>
-        <li>Navai</li>
-        <li>The Motans 🖤</li>
-        <li>Taylor Swift 🐍</li>
-        <li>Shawn Mendes (Stitches, Treat You Better)</li>
-        <li>One Direction 💕</li>
-        <li>Big Time Rush</li>
-        <li>Adele — Love in the Dark</li>
-        <li>Muzică la pian 🎹</li>
-        <li>Muzică veche / retro</li>
-      </ul>
-    </div>
-    <div class="list-col">
-      <h3>✨ Capodrele tale</h3>
-      <ul class="fancy-list">
-        <li>The Motans — „Înainte să ne fi născut" 💫</li>
-        <li>Adele — muzică cu înțeles real</li>
-        <li>Sunetul greierilor noaptea 🌙</li>
-        <li>Sunete de natură</li>
-        <li>Muzică pe fundal — ploaie, ceai, fereastră</li>
-        <li>Cafeaua rece + playlist chill ☕</li>
-      </ul>
-
-      <div style="margin-top:2rem;">
-        <h3>🎻 Momentul magic</h3>
-        <p style="font-size:0.9rem; color:#6d4a57; line-height:1.8; margin-top:0.5rem;">
-          Ploaie. Fereastră deschisă. Vântul intră ușor. Muzică pe fundal. Un ceai cald. O carte. Lumina ambientală. Tu. Acesta este paradisul tău.
-        </p>
+          <div style="margin-top:2rem;">
+            <h3>🎻 Momentul magic</h3>
+            <p style="font-size:0.9rem; color:#6d4a57; line-height:1.8; margin-top:0.5rem;">
+              Ploaie. Fereastră deschisă. Vântul intră ușor. Muzică pe fundal. Un ceai cald. O carte. Lumina ambientală. Tu. Acesta este paradisul tău.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-```
-
-  </div>
 </section>
 
-<!-- PROGRESS BARS - Fun -->
-
+<!-- PROGRESS BARS -->
 <section>
   <h2 class="section-title reveal">Cât de mult... 💗</h2>
   <div class="list-section reveal" id="progressSection">
     <div class="progress-item">
-      <div class="progress-label"><span>☕ Dependență de cafea</span><span>99%</span></div>
+      <div class="progress-label"><span>☕ Dependență de cafea rece & neagră</span><span>99%</span></div>
       <div class="progress-bar"><div class="progress-fill" data-width="99"></div></div>
     </div>
     <div class="progress-item">
@@ -978,7 +1009,7 @@ nav { gap: 0.3rem; }
       <div class="progress-bar"><div class="progress-fill" data-width="97"></div></div>
     </div>
     <div class="progress-item">
-      <div class="progress-label"><span>🍫 Dependență de Kinder</span><span>95%</span></div>
+      <div class="progress-label"><span>🍫 Dependență de Kinder & Twix</span><span>95%</span></div>
       <div class="progress-bar"><div class="progress-fill" data-width="95"></div></div>
     </div>
     <div class="progress-item">
@@ -990,18 +1021,25 @@ nav { gap: 0.3rem; }
       <div class="progress-bar"><div class="progress-fill" data-width="100"></div></div>
     </div>
     <div class="progress-item">
-      <div class="progress-label"><span>🛍️ Shopaholic de haine</span><span>92%</span></div>
+      <div class="progress-label"><span>🛍️ Shopaholica de haine negre</span><span>92%</span></div>
       <div class="progress-bar"><div class="progress-fill" data-width="92"></div></div>
     </div>
     <div class="progress-item">
       <div class="progress-label"><span>🌸 Energie de primit flori</span><span>100%</span></div>
       <div class="progress-bar"><div class="progress-fill" data-width="100"></div></div>
     </div>
+    <div class="progress-item">
+      <div class="progress-label"><span>🧿 Iubire pentru apusuri + ploaie</span><span>100%</span></div>
+      <div class="progress-bar"><div class="progress-fill" data-width="100"></div></div>
+    </div>
+    <div class="progress-item">
+      <div class="progress-label"><span>🎨 Pinterest obsession</span><span>85%</span></div>
+      <div class="progress-bar"><div class="progress-fill" data-width="85"></div></div>
+    </div>
   </div>
 </section>
 
 <!-- IUBIRE -->
-
 <section id="iubire" style="max-width:100%; background:white; padding: 5rem 2rem;">
   <div style="max-width:1100px; margin:0 auto;">
     <h2 class="section-title reveal">Iubirea ta 💌</h2>
@@ -1009,47 +1047,110 @@ nav { gap: 0.3rem; }
       <p class="reveal" style="font-family:'Playfair Display',serif; font-size:1.1rem; line-height:2; color:var(--dark); max-width:700px; margin:0 auto 2rem;">
         Știi să iubești. Toate filmele tale au tematică de iubire — nu pentru că ești naivă, ci pentru că <em>crezi în ea</em>. Și nu iubești de nevoie, ci iubești pentru că asta ești tu.
       </p>
+      <h3 style="font-family:'Dancing Script',cursive; font-size:1.6rem; color:var(--pink-main); margin-bottom:1rem;">Love language-ul tău 💕</h3>
+      <div class="love-tags">
+        <span class="love-tag">Cabina de făcut poze 📸</span>
+        <span class="love-tag">Ținutul de mână 🤝</span>
+        <span class="love-tag">Contactul cu ochii 👁️</span>
+        <span class="love-tag">Îmbrățișări calde 🫂</span>
+        <span class="love-tag">Filme vechi împreună 🎬</span>
+        <span class="love-tag">Scris lung, cu simț 📝</span>
+        <span class="love-tag">Lăudat familiei 🌟</span>
+        <span class="love-tag">Să fii știută fără cuvinte 🌙</span>
+        <span class="love-tag">Zâmbet de copil 😊</span>
+        <span class="love-tag">Să fii citită 📖</span>
+        <span class="love-tag">Poza de fundal pe telefon 🌸</span>
+        <span class="love-tag">Mângâiată în păr 🌿</span>
+        <span class="love-tag">Stickers când ești fericită 🐱</span>
+        <span class="love-tag">Proiector pe acoperiș 🌌</span>
+        <span class="love-tag">Clementine pe pătuc 🍊</span>
+        <span class="love-tag">Mâncare de lângă tine</span>
+      </div>
+    </div>
 
-```
-  <h3 style="font-family:'Dancing Script',cursive; font-size:1.6rem; color:var(--pink-main); margin-bottom:1rem;">Love language-ul tău 💕</h3>
-  <div class="love-tags">
-    <span class="love-tag">Cabina de făcut poze 📸</span>
-    <span class="love-tag">Ținutul de mână 🤝</span>
-    <span class="love-tag">Contactul cu ochii 👁️</span>
-    <span class="love-tag">Îmbrățișări calde 🫂</span>
-    <span class="love-tag">Filme vechi împreună 🎬</span>
-    <span class="love-tag">Scris lung, cu simț 📝</span>
-    <span class="love-tag">Lăudat familiei 🌟</span>
-    <span class="love-tag">Să fii știută fără cuvinte 🌙</span>
-    <span class="love-tag">Zâmbet de copil 😊</span>
-    <span class="love-tag">Să fii citită 📖</span>
-    <span class="love-tag">Poza de fundal pe telefon 🌸</span>
-    <span class="love-tag">Mângâiată în păr 🌿</span>
-    <span class="love-tag">Stickers când ești fericită 🐱</span>
-    <span class="love-tag">Proiector pe acoperiș 🌌</span>
-    <span class="love-tag">Clementine pe pătuc 🍊</span>
+    <div class="quote-block reveal" style="margin-top:3rem;">
+      „Ești de acord că atunci când dai iubire fără câștig înapoi — nu ești tu cea pierzătoare. Știi că nu-i problema în tine." — și asta te face extraordinară.
+    </div>
+
+    <div class="quote-block reveal" style="border-left-color: var(--pink-deep); margin-top:1.5rem;">
+      „Подобное — подобному. Соответствуй тому, что требуешь." Tu deja faci asta. Zi de zi. Schimbarea se încearcă cu tine.
+    </div>
   </div>
-</div>
+</section>
 
-<div class="quote-block reveal" style="margin-top:3rem;">
-  „Ești de acord că atunci când dai iubire fără câștig înapoi — nu ești tu cea pierzătoare. Știi că nu-i problema în tine." — și asta te face extraordinară.
-</div>
+<!-- EXTRA INFO -->
+<section id="extra" style="max-width:100%; background: linear-gradient(135deg, #fce4ec, #fff0f5); padding: 5rem 2rem;">
+  <div style="max-width:1100px; margin:0 auto;">
+    <h2 class="section-title reveal">Detalii speciale ✨</h2>
+    
+    <div class="list-section reveal">
+      <h3 style="font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--pink-deep); margin-bottom:1.5rem;">🌍 Informații personale</h3>
+      <ul class="fancy-list" style="columns: 2; gap: 2rem;">
+        <li>📛 Apelativele: Xenia, Xiuș, Xiușca, Ksiunea — preferă Xeni</li>
+        <li>🎂 Zodia: Taur ♉ | 4 mai</li>
+        <li>👁️ Ochii: Căprui | Piele sensibilă</li>
+        <li>☀️ Nu se bronzează — devine din nou albă</li>
+        <li>🧿 Fieritina scăzută</li>
+        <li>💊 Studiază medicină la Nicolae Testemițanu</li>
+        <li>👨 Tatăl: Victor</li>
+        <li>👨‍👩‍👧 Familia: Cozmic</li>
+        <li>🐱 Pisică: agresiv-pasivă, cu preocupări</li>
+      </ul>
+    </div>
 
-<div class="quote-block reveal" style="border-left-color: var(--pink-deep); margin-top:1.5rem;">
-  „Подобное — подобному. Соответствуй тому, что требуешь." Tu deja faci asta. Zi de zi.
-</div>
-```
+    <div class="list-section reveal" style="margin-top:2rem;">
+      <h3 style="font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--pink-deep); margin-bottom:1.5rem;">❌ NU-ți place</h3>
+      <ul class="fancy-list" style="columns: 2; gap: 2rem;">
+        <li>Carnea (doar pui)</li>
+        <li>Smântână</li>
+        <li>Mere coapte</li>
+        <li>Conversații tipice & predictabile</li>
+        <li>Rețelele de socializare (ar renunța)</li>
+        <li>Spații publice aglomerate</li>
+        <li>Cercuri mari de oameni</li>
+        <li>Prea multă lumină (armă rece)</li>
+      </ul>
+    </div>
 
+    <div class="list-section reveal" style="margin-top:2rem;">
+      <h3 style="font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--pink-deep); margin-bottom:1.5rem;">🎯 Vise & aspirații</h3>
+      <ul class="fancy-list" style="columns: 1;">
+        <li>🇮🇹 Vedere Italia (visul mare)</li>
+        <li>🐎 Călărie (inspirație: Bibi și Tina)</li>
+        <li>🚗 Mașină decapotabilă + muzică + apus</li>
+        <li>🏰 Acoperiș cu proiector + film + mâncare</li>
+        <li>📚 Cea mai mare librărie (pentru carte)</li>
+        <li>🏠 Casă cu mansardă + geam lângă pat + stele</li>
+        <li>📱 Să fii poza de fundal pe telefonul cuiva</li>
+        <li>🎞️ Propriul film: romcom sau The Notebook</li>
+        <li>❤️ Iubire cu răbdare și intensitate</li>
+        <li>👶 Înainte de familie — vrea să-și trăiască viața</li>
+      </ul>
+    </div>
+
+    <div class="list-section reveal" style="margin-top:2rem;">
+      <h3 style="font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--pink-deep); margin-bottom:1.5rem;">🎀 Mici obiceiuri & quirks</h3>
+      <ul class="fancy-list" style="columns: 1;">
+        <li>⌚ Bateria telefonului mereu pe descărcare (stă mult online)</li>
+        <li>🖐️ Se joacă cu lănțișorul de la gât când e incomodă</li>
+        <li>💤 Culcatul pe podea ca terapie</li>
+        <li>🧿 Lumina ambientală perfect la mijloc (albastră e sensibilă)</li>
+        <li>📸 Stickerele sunt modul ei de a comunica când se simte bine</li>
+        <li>🧠 Conversații singură cu tine noaptea (overthinker)</li>
+        <li>🏠 Acasă e bine — stă mult acasă</li>
+        <li>📖 Ți-ai uiți chiar și numele? (memorie selectivă)</li>
+        <li>💪 Ești obosită fără să faci ceva 😂</li>
+      </ul>
+    </div>
   </div>
 </section>
 
 <!-- SCRISOARE FINALA -->
-
 <section id="litera" style="max-width:100%; padding: 5rem 2rem; background: linear-gradient(180deg, #fce4ec, #fff0f5);">
   <div style="max-width:900px; margin:0 auto;">
     <h2 class="section-title reveal">O scrisoare pentru tine 💌</h2>
     <div class="letter-section reveal">
-      <p>Ksiușca,</p>
+      <p>Xiuș,</p>
       <p>
         Ești o persoană care se ascunde frumos — și eu îți spun sincer că e bine că te ascunzi. Nu oricine merită să te vadă toată. Îți place rozul pe interior și negrul la exterior, iubești profund dar cu cap, simți mult dar nu te pierzi.
       </p>
@@ -1060,23 +1161,31 @@ nav { gap: 0.3rem; }
         Dacă ai fi un personaj Disney, ai fi Belle — curioasă, profundă, cu inima mare, care vede dincolo de aparențe. Și la fel ca ea, merită să primești o iubire cu răbdare și intensitate.
       </p>
       <p>
-        Noaptea ești tu cea adevărată. Lumina ambientală, greierul afară, un gând profund — asta ești. Și e frumos.
+        Noaptea ești tu cea adevărată. Lumina ambientală, greierul afară, un gând profund — asta ești. Și e frumos. Nu-ți e frică de ce o să vină pentru că știi că dacă cazi — o să fii iar sus.
       </p>
       <p>
-        Ce trebuie să vină — va veni. Tu nu cauți pe nimeni. Tu pur și simplu ești.
+        Părinții tăi sunt ancora ta — și asta e suficient. Iubire mai mare decât a lor? Nu există. Și asta te face puternică.
+      </p>
+      <p>
+        Ce trebuie să vină — va veni. Tu nu cauți pe nimeni. Tu pur și simplu ești. Și ești extraordinară.
+      </p>
+      <p style="margin-top: 2rem; font-size: 0.95rem; color: #6d4a57;">
+        În spatele fiecărui „mulțumesc" pentru un compliment se ascunde o fetiță extrem de fericită. Și asta am vrut să-ți arăt cu această pagină.
       </p>
       <div class="letter-sig">cu drag, 🌸</div>
+      <p style="font-size: 0.8rem; color: #999; margin-top: 1.5rem;">Fiecare detaliu a fost adunat cu atenție. Fiecare cuvânt a fost gândit. Tu merești asta și mai mult.</p>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
-
 <footer>
   <span class="footer-heart">💗</span>
-  <p>Ksiușca • Ksiunea • 🐾 pisicuță în altă viață</p>
-  <p style="margin-top:0.5rem; font-size:0.75rem; opacity:0.5;">
-    Fiecare detaliu a fost adunat cu atenție. Fiecare cuvânt a fost gândit. 🌸
+  <p>Xenia • Xiuș • Ksiușca • 🐾 pisicuță în altă viață</p>
+  <p style="margin-top:0.5rem; font-size:0.75rem; opacity:0.7;">
+    Universitatea de Medicină Nicolae Testemițanu, Republica Moldova 🇲🇩<br/>
+    Familie Cozmic • 4 mai • Taur ♉<br/>
+    🌸 Din suflet, pentru tine 🌸
   </p>
 </footer>
 

@@ -739,20 +739,6 @@ body.fin-unlocked .fin-sensitive-action{display:inline-flex !important;}
 
     </div><!-- end .main -->
 
-    <!-- Finance PIN overlay -->
-    <div class="pin-overlay" id="fin-pin-screen">
-      <div class="pin-container">
-        <div style="font-size:12px;color:#8899bb;margin-bottom:10px;text-transform:uppercase;letter-spacing:1px;">Introdu PIN Securitate</div>
-        <div class="pin-display" id="fin-pin-dots"></div>
-        <div class="pin-grid">
-          <div class="pin-key" onclick="finPressPin('1')">1</div><div class="pin-key" onclick="finPressPin('2')">2</div><div class="pin-key" onclick="finPressPin('3')">3</div>
-          <div class="pin-key" onclick="finPressPin('4')">4</div><div class="pin-key" onclick="finPressPin('5')">5</div><div class="pin-key" onclick="finPressPin('6')">6</div>
-          <div class="pin-key" onclick="finPressPin('7')">7</div><div class="pin-key" onclick="finPressPin('8')">8</div><div class="pin-key" onclick="finPressPin('9')">9</div>
-          <div></div><div class="pin-key" onclick="finPressPin('0')">0</div><div></div>
-          <button class="pin-key clear" onclick="finClearPin()">Închide</button>
-        </div>
-      </div>
-    </div>
 
     <!-- Finance toast -->
     <div class="ftoast" id="fin-toast"></div>
@@ -1742,7 +1728,6 @@ let finSupabaseConstantWalletItem=null;
 let _finNetMonthlyRON=0,_finWalletTotalRON=0;
 const finModalCurrencyMode={};
 let finIsUnlocked=false,finIsLoading=false,finCurrentPinInput='';
-const FIN_TARGET_PIN='4579';
 function finGenId(){return Date.now()*1000+Math.floor(Math.random()*1000);}
 
 function finGetEurRateSell(){return parseFloat(document.getElementById('eur-rate-sell').value)||5.17;}
@@ -1837,27 +1822,19 @@ async function finRefreshAll(){
 
 function finHandleLockClick(){
   if(finIsUnlocked){
-    finIsUnlocked=false;finCurrentPinInput='';
+    finIsUnlocked=false;
     document.body.classList.remove('fin-unlocked');
     const lb=document.getElementById('fin-global-lock-btn');lb.className='fbtn fbtn-lock';lb.innerHTML='Blocat';
     finRenderWallet();finRenderExpenses();finToast('🔒 Aplicația a fost blocată');
   } else {
-    finCurrentPinInput='';document.getElementById('fin-pin-dots').textContent='';
-    document.getElementById('fin-pin-screen').classList.add('open');
+    finIsUnlocked=true;
+    document.body.classList.add('fin-unlocked');
+    const lb=document.getElementById('fin-global-lock-btn');lb.className='fbtn fbtn-lock unlocked';lb.innerHTML='Deblocat';
+    finRenderWallet();finRenderExpenses();finToast('🔓 Acces deblocat cu succes');
   }
 }
-function finPressPin(num){
-  if(finCurrentPinInput.length>=4)return;
-  finCurrentPinInput+=num;
-  document.getElementById('fin-pin-dots').textContent='• '.repeat(finCurrentPinInput.length);
-  if(finCurrentPinInput===FIN_TARGET_PIN){
-    finIsUnlocked=true;document.body.classList.add('fin-unlocked');
-    const lb=document.getElementById('fin-global-lock-btn');lb.className='fbtn fbtn-lock unlocked';lb.innerHTML='Deblocat';
-    document.getElementById('fin-pin-screen').classList.remove('open');
-    finRenderWallet();finRenderExpenses();finToast('🔓 Acces deblocat cu succes');
-  }else if(finCurrentPinInput.length===4){finToast('❌ PIN incorect!','err');finClearPin();}
-}
-function finClearPin(){finCurrentPinInput='';document.getElementById('fin-pin-dots').textContent='';document.getElementById('fin-pin-screen').classList.remove('open');}
+
+
 
 let _finToastTimer;
 function finToast(msg,type='ok'){const el=document.getElementById('fin-toast');el.textContent=msg;el.className=`ftoast show ${type}`;clearTimeout(_finToastTimer);_finToastTimer=setTimeout(()=>el.classList.remove('show'),2800);}

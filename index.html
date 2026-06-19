@@ -212,7 +212,8 @@ body::before{
 .protection-pct-inp:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,.1);}
 .survival-box{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:var(--rsm);padding:12px;margin-top:2px;}
 .survival-item{display:flex;justify-content:space-between;align-items:center;padding:6px 0;font-size:12px;}
-.survival-item:not(:last-child){border-bottom:1px solid rgba(255,255,255,.04);padding-bottom:8px;margin-bottom:4px;}
+.survival-item:not(:last-child){padding-bottom:2px;}
+
 .survival-lbl{color:var(--dim);max-width:60%;line-height:1.3;}
 .survival-val{font-weight:700;color:var(--gold-l);text-align:right;max-width:40%;}
 .survival-val.red-text{color:var(--red);}
@@ -1157,7 +1158,17 @@ let protectionPct = 0;
 const currency    = 'RON';
 let survivalTotal = 0;
 let survivalSpent = 0;
-const CURRENT_AGE = 23;
+const BIRTH_DATE = new Date(2002, 9, 27); // 27 octombrie 2002
+
+function getCurrentAgeYM() {
+  const now = new Date();
+  let years = now.getFullYear() - BIRTH_DATE.getFullYear();
+  let months = now.getMonth() - BIRTH_DATE.getMonth();
+  if (now.getDate() < BIRTH_DATE.getDate()) months--;
+  if (months < 0) { years--; months += 12; }
+  return { years, months };
+}
+
 
 function effectiveGoal() {
   if (baseExpense <= 0) return 0;
@@ -1378,10 +1389,14 @@ function calculateSurvival(){
   const pureEl=document.getElementById('survival-pure-val');
   if(survivalTotal===0||survivalSpent===0){box.style.display='none';return;}
   box.style.display='block';
+
   const curMonthlyYield=bonds.filter(b=>!isMatured(b)).reduce((s,b)=>s+monthlyVal(b),0);
+
+  const oldPhases=document.getElementById('pace-phases');if(oldPhases)oldPhases.remove();
+  const oldPaceSep=document.getElementById('pace-sep');if(oldPaceSep)oldPaceSep.remove();
+
   if(curMonthlyYield>=survivalSpent){
     paceEl.innerHTML='<span style="color:var(--green)">∞ Nemărginit (Câștigul acoperă cheltuielile!)</span>';
-    const old=document.getElementById('pace-phases');if(old)old.remove();
   } else {
     const lossMonthly=survivalSpent-curMonthlyYield;
     const totalBondsAmt=bonds.filter(b=>!isMatured(b)).reduce((s,b)=>s+b.amt,0);
@@ -1390,36 +1405,76 @@ function calculateSurvival(){
     if(cashNotInvested>0)totalYears+=cashNotInvested/(lossMonthly*12);
     if(totalBondsAmt>0)totalYears+=totalBondsAmt/(survivalSpent*12);
     const phase2Years=totalBondsAmt/(survivalSpent*12);
+
     paceEl.textContent=formatYearsAndAge(totalYears)+' total';
-    const old=document.getElementById('pace-phases');if(old)old.remove();
+
     const phases=document.createElement('div');
     phases.id='pace-phases';
-    phases.style.cssText='padding:8px 0 12px;margin-bottom:4px;border-bottom:1px solid rgba(255,255,255,.04);display:flex;flex-direction:row;gap:6px;width:100%;box-sizing:border-box;';
-    phases.innerHTML=`<div style="flex:1;min-width:0;background:rgba(78,205,164,0.06);border:1px solid rgba(78,205,164,0.15);border-radius:10px;padding:10px 12px;font-size:11px;color:var(--dim);line-height:1.6;box-sizing:border-box;">📦 <strong style="color:var(--text);">Faza 1</strong> — cash neinvestit (${Math.round(cashNotInvested).toLocaleString('ro-RO')} lei) acoperă deficitul de ${Math.round(lossMonthly).toLocaleString('ro-RO')} lei/lună:<br><strong style="color:var(--green);">${formatYearsAndAge(cashNotInvested/(lossMonthly*12))}</strong></div><div style="flex:1;min-width:0;background:rgba(126,184,247,0.06);border:1px solid rgba(126,184,247,0.15);border-radius:10px;padding:10px 12px;font-size:11px;color:var(--dim);line-height:1.6;box-sizing:border-box;">💼 <strong style="color:var(--text);">Faza 2</strong> — capitalul din obligațiuni (${Math.round(totalBondsAmt).toLocaleString('ro-RO')} lei) la ${Math.round(survivalSpent).toLocaleString('ro-RO')} lei/lună:<br><strong style="color:var(--blue);">+${formatYearsAndAge(phase2Years)}</strong></div>`;
+    phases.style.cssText='padding:8px 0 4px;display:flex;flex-direction:row;gap:6px;width:100%;box-sizing:border-box;';
+    phases.innerHTML=`
+      <div style="flex:1;min-width:0;background:rgba(78,205,164,0.06);border:1px solid rgba(78,205,164,0.15);border-radius:10px;padding:10px 12px;font-size:11px;color:var(--dim);line-height:1.6;box-sizing:border-box;">
+        📦 <strong style="color:var(--text);">Faza 1</strong> — cash neinvestit (${Math.round(cashNotInvested).toLocaleString('ro-RO')} lei) acoperă deficitul de ${Math.round(lossMonthly).toLocaleString('ro-RO')} lei/lună cât timp obligațiunile rulează:<br>
+        <strong style="color:var(--green);">${formatYearsAndAge(cashNotInvested/(lossMonthly*12))}</strong>
+      </div>
+      <div style="flex:1;min-width:0;background:rgba(126,184,247,0.06);border:1px solid rgba(126,184,247,0.15);border-radius:10px;padding:10px 12px;font-size:11px;color:var(--dim);line-height:1.6;box-sizing:border-box;">
+        💼 <strong style="color:var(--text);">Faza 2</strong> — capitalul din obligațiuni (${Math.round(totalBondsAmt).toLocaleString('ro-RO')} lei) folosit ca bani normali la ${Math.round(survivalSpent).toLocaleString('ro-RO')} lei/lună:<br>
+        <strong style="color:var(--blue);">+${formatYearsAndAge(phase2Years)}</strong>
+      </div>
+    `;
     paceEl.closest('.survival-item').after(phases);
   }
+
+  const paceSep=document.createElement('div');
+  paceSep.id='pace-sep';
+  paceSep.style.cssText='border-bottom:1px solid rgba(255,255,255,.04);margin:8px 0;width:100%;';
+  (document.getElementById('pace-phases')||paceEl.closest('.survival-item')).after(paceSep);
+
   const totalBondsAmt=bonds.filter(b=>!isMatured(b)).reduce((s,b)=>s+b.amt,0);
   const leftCash=survivalTotal-totalBondsAmt;
   const oldCrashExp=document.getElementById('crash-explain');if(oldCrashExp)oldCrashExp.remove();
-  const crashExp=document.createElement('div');crashExp.id='crash-explain';crashExp.style.cssText='padding:8px 0 12px;margin-bottom:4px;border-bottom:1px solid rgba(255,255,255,.04);width:100%;box-sizing:border-box;';
-  if(leftCash<=0){crashEl.innerHTML='<span class="survival-val red-text">0 ani (toți banii tăi sunt investiți)</span>';crashExp.innerHTML=`<div style="background:rgba(224,112,112,0.06);border:1px solid rgba(224,112,112,0.15);border-radius:10px;padding:10px 12px;font-size:11px;color:var(--dim);line-height:1.6;box-sizing:border-box;">🛡️ Tot capitalul tău (${Math.round(survivalTotal).toLocaleString('ro-RO')} lei) e mai mic sau egal cu suma investită în obligațiuni (${Math.round(totalBondsAmt).toLocaleString('ro-RO')} lei).</div>`;}
-  else{const yearsCrash=leftCash/(survivalSpent*12);crashEl.textContent=formatYearsAndAge(yearsCrash);crashExp.innerHTML=`<div style="background:rgba(224,112,112,0.06);border:1px solid rgba(224,112,112,0.15);border-radius:10px;padding:10px 12px;font-size:11px;color:var(--dim);line-height:1.6;box-sizing:border-box;">🛡️ Cash rămas (${Math.round(survivalTotal).toLocaleString('ro-RO')} − ${Math.round(totalBondsAmt).toLocaleString('ro-RO')} = ${Math.round(leftCash).toLocaleString('ro-RO')} lei) ÷ ${Math.round(survivalSpent).toLocaleString('ro-RO')} lei/lună:<br><strong style="color:var(--gold-l);">${formatYearsAndAge(yearsCrash)}</strong></div>`;}
+  const oldCrashSep=document.getElementById('crash-sep');if(oldCrashSep)oldCrashSep.remove();
+
+  const crashExp=document.createElement('div');
+  crashExp.id='crash-explain';
+  crashExp.style.cssText='padding:8px 0 4px;width:100%;box-sizing:border-box;';
+  if(leftCash<=0){
+    crashEl.innerHTML='<span class="survival-val red-text">0 ani (toți banii tăi sunt investiți)</span>';
+    crashExp.innerHTML=`<div style="background:rgba(224,112,112,0.06);border:1px solid rgba(224,112,112,0.15);border-radius:10px;padding:10px 12px;font-size:11px;color:var(--dim);line-height:1.6;box-sizing:border-box;">🛡️ Tot capitalul tău (${Math.round(survivalTotal).toLocaleString('ro-RO')} lei) e mai mic sau egal cu suma investită în obligațiuni (${Math.round(totalBondsAmt).toLocaleString('ro-RO')} lei).</div>`;
+  } else {
+    const yearsCrash=leftCash/(survivalSpent*12);
+    crashEl.textContent=formatYearsAndAge(yearsCrash);
+    crashExp.innerHTML=`<div style="background:rgba(224,112,112,0.06);border:1px solid rgba(224,112,112,0.15);border-radius:10px;padding:10px 12px;font-size:11px;color:var(--dim);line-height:1.6;box-sizing:border-box;">🛡️ Cash rămas (${Math.round(survivalTotal).toLocaleString('ro-RO')} − ${Math.round(totalBondsAmt).toLocaleString('ro-RO')} = ${Math.round(leftCash).toLocaleString('ro-RO')} lei) ÷ ${Math.round(survivalSpent).toLocaleString('ro-RO')} lei/lună:<br><strong style="color:var(--gold-l);">${formatYearsAndAge(yearsCrash)}</strong></div>`;
+  }
   crashEl.closest('.survival-item').after(crashExp);
+
+  const crashSep=document.createElement('div');
+  crashSep.id='crash-sep';
+  crashSep.style.cssText='border-bottom:1px solid rgba(255,255,255,.04);margin:8px 0;width:100%;';
+  crashExp.after(crashSep);
+
   const yearsPure=survivalTotal/(survivalSpent*12);
   pureEl.textContent=formatYearsAndAge(yearsPure);
   const oldPureExp=document.getElementById('pure-explain');if(oldPureExp)oldPureExp.remove();
-  const pureExp=document.createElement('div');pureExp.id='pure-explain';pureExp.style.cssText='padding:8px 0 4px;width:100%;box-sizing:border-box;';
+  const pureExp=document.createElement('div');
+  pureExp.id='pure-explain';
+  pureExp.style.cssText='padding:8px 0 4px;width:100%;box-sizing:border-box;';
   pureExp.innerHTML=`<div style="background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.15);border-radius:10px;padding:10px 12px;font-size:11px;color:var(--dim);line-height:1.6;box-sizing:border-box;">💸 ${Math.round(survivalTotal).toLocaleString('ro-RO')} lei ÷ ${Math.round(survivalSpent).toLocaleString('ro-RO')} lei/lună:<br><strong style="color:var(--gold-l);">${formatYearsAndAge(yearsPure)}</strong></div>`;
   pureEl.closest('.survival-item').after(pureExp);
+  // ultima categorie (Fără investiții) nu primește separator după ea
+
   clearTimeout(protSaveTimer);protSaveTimer=setTimeout(()=>savePrefsToSupabase(),800);
 }
+
 
 function formatYearsAndAge(y){
   const totalMonthsRemaining=Math.round(y*12);
   const aniRamasi=Math.floor(totalMonthsRemaining/12);
   const luniRamase=totalMonthsRemaining%12;
-  const finalAgeYears=CURRENT_AGE+aniRamasi;
-  const finalAgeMonths=luniRamase;
+  const{years:curY,months:curM}=getCurrentAgeYM();
+  const totalFinalMonths=curY*12+curM+totalMonthsRemaining;
+  const finalAgeYears=Math.floor(totalFinalMonths/12);
+  const finalAgeMonths=totalFinalMonths%12;
+
   let durataStr='';
   if(aniRamasi>0)durataStr+=`${aniRamasi} an${aniRamasi===1?'':'i'}`;
   if(luniRamase>0){if(durataStr!=='')durataStr+=' și ';durataStr+=`${luniRamase} lun${luniRamase===1?'ă':'i'}`;}

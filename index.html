@@ -760,125 +760,7 @@ body.fin-unlocked .fin-sensitive-action{display:inline-flex !important;}
   </div><!-- end .fin-scope -->
 </div><!-- end #panel-finance -->
 
-<!-- Finance modals (outside fin-scope so they can overlay everything) -->
-<div class="foverlay" id="mo-wallet">
-  <div class="fmodal">
-    <div class="fmodal-handle"></div>
-    <div class="fmodal-title">💰 Sursă / Cont</div>
-    <div class="fmodal-fields">
-      <div><div class="field-label" style="font-size:10px;font-weight:700;color:#8899bb;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px;">Etichetă</div><input type="text" id="w-label" placeholder="ex: 👝 Revolut"></div>
-      <div class="amount-field-wrap">
-        <div class="amount-field-top"><div class="field-label" style="font-size:10px;font-weight:700;color:#8899bb;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:0;">Sumă</div><div class="currency-toggle" style="display:flex;gap:4px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.045);border-radius:10px;padding:3px;"><button class="curr-btn active" id="w-curr-ron" onclick="finSetCurrencyMode('w','ron')">RON</button><button class="curr-btn" id="w-curr-eur" onclick="finSetCurrencyMode('w','eur')">EUR</button></div></div>
-        <div class="input-with-badge"><input type="number" id="w-amount" placeholder="ex: 2500" inputmode="decimal" step="0.01" oninput="finUpdateConvertedHint('w')"><span class="input-curr-badge ron" id="w-curr-badge">LEI</span></div>
-        <div class="input-converted-hint" id="w-converted-hint"></div>
-        <div class="rate-info-box active-ron" id="w-rate-info"><span class="rate-info-icon">ℹ️</span><span class="rate-info-text" id="w-rate-info-text"></span></div>
-      </div>
-    </div>
-    <div class="fmodal-actions"><button class="fbtn fbtn-ghost" onclick="finCloseModal('mo-wallet')">Anulează</button><button class="fbtn fbtn-blue" onclick="finSaveWallet()">Adaugă</button></div>
-  </div>
-</div>
 
-<div class="foverlay" id="mo-edit-wallet">
-  <div class="fmodal">
-    <div class="fmodal-handle"></div>
-    <div class="fmodal-title">✏️ Editează Sursă</div>
-    <input type="hidden" id="ew-id">
-    <div class="fmodal-fields">
-      <div><div class="field-label" style="font-size:10px;font-weight:700;color:#8899bb;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px;">Etichetă</div><input type="text" id="ew-label"></div>
-      <div class="amount-field-wrap">
-        <div class="amount-field-top"><div class="field-label" style="font-size:10px;font-weight:700;color:#8899bb;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:0;">Sumă</div><div class="currency-toggle" style="display:flex;gap:4px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.045);border-radius:10px;padding:3px;"><button class="curr-btn active" id="ew-curr-ron" onclick="finSetCurrencyMode('ew','ron')">RON</button><button class="curr-btn" id="ew-curr-eur" onclick="finSetCurrencyMode('ew','eur')">EUR</button></div></div>
-        <div class="input-with-badge"><input type="number" id="ew-amount" inputmode="decimal" step="0.01" oninput="finUpdateConvertedHint('ew')"><span class="input-curr-badge ron" id="ew-curr-badge">LEI</span></div>
-        <div class="input-converted-hint" id="ew-converted-hint"></div>
-        <div class="rate-info-box active-ron" id="ew-rate-info"><span class="rate-info-icon">ℹ️</span><span class="rate-info-text" id="ew-rate-info-text"></span></div>
-      </div>
-    </div>
-    <div class="fmodal-actions"><button class="fbtn fbtn-ghost" onclick="finCloseModal('mo-edit-wallet')">Anulează</button><button class="fbtn fbtn-blue" onclick="finUpdateWallet()">Salvează</button></div>
-  </div>
-</div>
-
-<div class="foverlay" id="mo-cat">
-  <div class="fmodal">
-    <div class="fmodal-handle"></div>
-    <div class="fmodal-title">📂 Categorie Cheltuieli</div>
-    <div class="fmodal-fields">
-      <div><div class="field-label" style="font-size:10px;font-weight:700;color:#8899bb;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px;">Nume categorie</div><input type="text" id="cat-label" placeholder="ex: 🏠 Chirie"></div>
-      <div class="flex-row" style="display:flex;gap:10px;align-items:flex-end;">
-        <div class="amount-field-wrap" style="flex:1;">
-          <div class="amount-field-top"><div class="field-label" style="font-size:10px;font-weight:700;color:#8899bb;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:0;">Sumă</div><div class="currency-toggle" style="display:flex;gap:4px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.045);border-radius:10px;padding:3px;"><button class="curr-btn active" id="cat-curr-ron" onclick="finSetCurrencyMode('cat','ron')">RON</button><button class="curr-btn" id="cat-curr-eur" onclick="finSetCurrencyMode('cat','eur')">EUR</button></div></div>
-          <div class="input-with-badge"><input type="number" id="cat-amount" placeholder="ex: 1500" inputmode="decimal" step="0.01" oninput="finUpdateConvertedHint('cat')"><span class="input-curr-badge ron" id="cat-curr-badge">LEI</span></div>
-          <div class="input-converted-hint" id="cat-converted-hint"></div>
-        </div>
-        <div style="flex:1;"><div class="field-label" style="font-size:10px;font-weight:700;color:#8899bb;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px;">Tip</div><select id="cat-type"><option value="monthly">Lunară 🗓</option><option value="annual">Anuală 📅</option></select></div>
-      </div>
-    </div>
-    <div class="fmodal-actions"><button class="fbtn fbtn-ghost" onclick="finCloseModal('mo-cat')">Anulează</button><button class="fbtn fbtn-blue" onclick="finSaveCat()">Adaugă</button></div>
-  </div>
-</div>
-
-<div class="foverlay" id="mo-edit-cat">
-  <div class="fmodal">
-    <div class="fmodal-handle"></div>
-    <div class="fmodal-title">✏️ Editează Categorie</div>
-    <input type="hidden" id="ec-id">
-    <div class="fmodal-fields">
-      <div><div class="field-label" style="font-size:10px;font-weight:700;color:#8899bb;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px;">Nume</div><input type="text" id="ec-label"></div>
-      <div class="flex-row" style="display:flex;gap:10px;align-items:flex-end;">
-        <div class="amount-field-wrap" style="flex:1;">
-          <div class="amount-field-top"><div class="field-label" style="font-size:10px;font-weight:700;color:#8899bb;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:0;">Sumă</div><div class="currency-toggle" style="display:flex;gap:4px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.045);border-radius:10px;padding:3px;"><button class="curr-btn active" id="ec-curr-ron" onclick="finSetCurrencyMode('ec','ron')">RON</button><button class="curr-btn" id="ec-curr-eur" onclick="finSetCurrencyMode('ec','eur')">EUR</button></div></div>
-          <div class="input-with-badge"><input type="number" id="ec-amount" inputmode="decimal" step="0.01" oninput="finUpdateConvertedHint('ec')"><span class="input-curr-badge ron" id="ec-curr-badge">LEI</span></div>
-          <div class="input-converted-hint" id="ec-converted-hint"></div>
-        </div>
-        <div style="flex:1;"><div class="field-label" style="font-size:10px;font-weight:700;color:#8899bb;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px;">Tip</div><select id="ec-type"><option value="monthly">Lunară 🗓</option><option value="annual">Anuală 📅</option></select></div>
-      </div>
-    </div>
-    <div class="fmodal-actions"><button class="fbtn fbtn-ghost" onclick="finCloseModal('mo-edit-cat')">Anulează</button><button class="fbtn fbtn-blue" onclick="finUpdateCat()">Salvează</button></div>
-  </div>
-</div>
-
-<div class="foverlay" id="mo-subcat">
-  <div class="fmodal">
-    <div class="fmodal-handle"></div>
-    <div class="fmodal-title">➕ Subcategorie</div>
-    <input type="hidden" id="sub-parent-id">
-    <div class="fmodal-fields">
-      <div><div class="field-label" style="font-size:10px;font-weight:700;color:#8899bb;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px;">Nume</div><input type="text" id="sub-label" placeholder="ex: 📶 SIM 1"></div>
-      <div class="amount-field-wrap">
-        <div class="amount-field-top"><div class="field-label" style="font-size:10px;font-weight:700;color:#8899bb;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:0;">Sumă</div><div class="currency-toggle" style="display:flex;gap:4px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.045);border-radius:10px;padding:3px;"><button class="curr-btn active" id="sub-curr-ron" onclick="finSetCurrencyMode('sub','ron')">RON</button><button class="curr-btn" id="sub-curr-eur" onclick="finSetCurrencyMode('sub','eur')">EUR</button></div></div>
-        <div class="input-with-badge"><input type="number" id="sub-amount" placeholder="ex: 35" inputmode="decimal" step="0.01" oninput="finUpdateConvertedHint('sub')"><span class="input-curr-badge ron" id="sub-curr-badge">LEI</span></div>
-        <div class="input-converted-hint" id="sub-converted-hint"></div>
-      </div>
-    </div>
-    <div class="fmodal-actions"><button class="fbtn fbtn-ghost" onclick="finCloseModal('mo-subcat')">Anulează</button><button class="fbtn fbtn-blue" onclick="finSaveSubcat()">Adaugă</button></div>
-  </div>
-</div>
-
-<div class="foverlay" id="mo-edit-subcat">
-  <div class="fmodal">
-    <div class="fmodal-handle"></div>
-    <div class="fmodal-title">✏️ Editează Subcategorie</div>
-    <input type="hidden" id="es-id"><input type="hidden" id="es-parent-id">
-    <div class="fmodal-fields">
-      <div><div class="field-label" style="font-size:10px;font-weight:700;color:#8899bb;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px;">Nume</div><input type="text" id="es-label"></div>
-      <div class="amount-field-wrap">
-        <div class="amount-field-top"><div class="field-label" style="font-size:10px;font-weight:700;color:#8899bb;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:0;">Sumă</div><div class="currency-toggle" style="display:flex;gap:4px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.045);border-radius:10px;padding:3px;"><button class="curr-btn active" id="es-curr-ron" onclick="finSetCurrencyMode('es','ron')">RON</button><button class="curr-btn" id="es-curr-eur" onclick="finSetCurrencyMode('es','eur')">EUR</button></div></div>
-        <div class="input-with-badge"><input type="number" id="es-amount" inputmode="decimal" step="0.01" oninput="finUpdateConvertedHint('es')"><span class="input-curr-badge ron" id="es-curr-badge">LEI</span></div>
-        <div class="input-converted-hint" id="es-converted-hint"></div>
-      </div>
-    </div>
-    <div class="fmodal-actions"><button class="fbtn fbtn-ghost" onclick="finCloseModal('mo-edit-subcat')">Anulează</button><button class="fbtn fbtn-blue" onclick="finUpdateSubcat()">Salvează</button></div>
-  </div>
-</div>
-
-<div class="foverlay" id="mo-export">
-  <div class="fmodal">
-    <div class="fmodal-handle"></div>
-    <div class="fmodal-title">📦 Descarcă Backup (CSV)</div>
-    <div class="fmodal-fields">
-      <button class="fbtn fbtn-blue" style="width:100%;padding:14px;border-radius:16px;" onclick="finExportTableCSV('fd_settings')">⬇️ fd_settings.csv</button>
-    </div>
-    <div class="fmodal-actions"><button class="fbtn fbtn-ghost" onclick="finCloseModal('mo-export')" style="width:100%;">Închide</button></div>
-  </div>
-</div>
 
 <!-- ══════════════════════════════════════════ DASHBOARD ══════ -->
 <div class="panel" id="panel-dashboard">
@@ -1067,6 +949,126 @@ body.fin-unlocked .fin-sensitive-action{display:inline-flex !important;}
 
   </div><!-- end scroll-area -->
 </div><!-- end app -->
+
+<!-- Finance modals (outside fin-scope so they can overlay everything) -->
+<div class="foverlay fin-scope" id="mo-wallet">
+  <div class="fmodal">
+    <div class="fmodal-handle"></div>
+    <div class="fmodal-title">💰 Sursă / Cont</div>
+    <div class="fmodal-fields">
+      <div><div class="field-label" style="font-size:10px;font-weight:700;color:#8899bb;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px;">Etichetă</div><input type="text" id="w-label" placeholder="ex: 👝 Revolut"></div>
+      <div class="amount-field-wrap">
+        <div class="amount-field-top"><div class="field-label" style="font-size:10px;font-weight:700;color:#8899bb;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:0;">Sumă</div><div class="currency-toggle" style="display:flex;gap:4px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.045);border-radius:10px;padding:3px;"><button class="curr-btn active" id="w-curr-ron" onclick="finSetCurrencyMode('w','ron')">RON</button><button class="curr-btn" id="w-curr-eur" onclick="finSetCurrencyMode('w','eur')">EUR</button></div></div>
+        <div class="input-with-badge"><input type="number" id="w-amount" placeholder="ex: 2500" inputmode="decimal" step="0.01" oninput="finUpdateConvertedHint('w')"><span class="input-curr-badge ron" id="w-curr-badge">LEI</span></div>
+        <div class="input-converted-hint" id="w-converted-hint"></div>
+        <div class="rate-info-box active-ron" id="w-rate-info"><span class="rate-info-icon">ℹ️</span><span class="rate-info-text" id="w-rate-info-text"></span></div>
+      </div>
+    </div>
+    <div class="fmodal-actions"><button class="fbtn fbtn-ghost" onclick="finCloseModal('mo-wallet')">Anulează</button><button class="fbtn fbtn-blue" onclick="finSaveWallet()">Adaugă</button></div>
+  </div>
+</div>
+
+<div class="foverlay fin-scope" id="mo-edit-wallet">
+  <div class="fmodal">
+    <div class="fmodal-handle"></div>
+    <div class="fmodal-title">✏️ Editează Sursă</div>
+    <input type="hidden" id="ew-id">
+    <div class="fmodal-fields">
+      <div><div class="field-label" style="font-size:10px;font-weight:700;color:#8899bb;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px;">Etichetă</div><input type="text" id="ew-label"></div>
+      <div class="amount-field-wrap">
+        <div class="amount-field-top"><div class="field-label" style="font-size:10px;font-weight:700;color:#8899bb;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:0;">Sumă</div><div class="currency-toggle" style="display:flex;gap:4px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.045);border-radius:10px;padding:3px;"><button class="curr-btn active" id="ew-curr-ron" onclick="finSetCurrencyMode('ew','ron')">RON</button><button class="curr-btn" id="ew-curr-eur" onclick="finSetCurrencyMode('ew','eur')">EUR</button></div></div>
+        <div class="input-with-badge"><input type="number" id="ew-amount" inputmode="decimal" step="0.01" oninput="finUpdateConvertedHint('ew')"><span class="input-curr-badge ron" id="ew-curr-badge">LEI</span></div>
+        <div class="input-converted-hint" id="ew-converted-hint"></div>
+        <div class="rate-info-box active-ron" id="ew-rate-info"><span class="rate-info-icon">ℹ️</span><span class="rate-info-text" id="ew-rate-info-text"></span></div>
+      </div>
+    </div>
+    <div class="fmodal-actions"><button class="fbtn fbtn-ghost" onclick="finCloseModal('mo-edit-wallet')">Anulează</button><button class="fbtn fbtn-blue" onclick="finUpdateWallet()">Salvează</button></div>
+  </div>
+</div>
+
+<div class="foverlay fin-scope" id="mo-cat">
+  <div class="fmodal">
+    <div class="fmodal-handle"></div>
+    <div class="fmodal-title">📂 Categorie Cheltuieli</div>
+    <div class="fmodal-fields">
+      <div><div class="field-label" style="font-size:10px;font-weight:700;color:#8899bb;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px;">Nume categorie</div><input type="text" id="cat-label" placeholder="ex: 🏠 Chirie"></div>
+      <div class="flex-row" style="display:flex;gap:10px;align-items:flex-end;">
+        <div class="amount-field-wrap" style="flex:1;">
+          <div class="amount-field-top"><div class="field-label" style="font-size:10px;font-weight:700;color:#8899bb;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:0;">Sumă</div><div class="currency-toggle" style="display:flex;gap:4px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.045);border-radius:10px;padding:3px;"><button class="curr-btn active" id="cat-curr-ron" onclick="finSetCurrencyMode('cat','ron')">RON</button><button class="curr-btn" id="cat-curr-eur" onclick="finSetCurrencyMode('cat','eur')">EUR</button></div></div>
+          <div class="input-with-badge"><input type="number" id="cat-amount" placeholder="ex: 1500" inputmode="decimal" step="0.01" oninput="finUpdateConvertedHint('cat')"><span class="input-curr-badge ron" id="cat-curr-badge">LEI</span></div>
+          <div class="input-converted-hint" id="cat-converted-hint"></div>
+        </div>
+        <div style="flex:1;"><div class="field-label" style="font-size:10px;font-weight:700;color:#8899bb;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px;">Tip</div><select id="cat-type"><option value="monthly">Lunară 🗓</option><option value="annual">Anuală 📅</option></select></div>
+      </div>
+    </div>
+    <div class="fmodal-actions"><button class="fbtn fbtn-ghost" onclick="finCloseModal('mo-cat')">Anulează</button><button class="fbtn fbtn-blue" onclick="finSaveCat()">Adaugă</button></div>
+  </div>
+</div>
+
+<div class="foverlay fin-scope" id="mo-edit-cat">
+  <div class="fmodal">
+    <div class="fmodal-handle"></div>
+    <div class="fmodal-title">✏️ Editează Categorie</div>
+    <input type="hidden" id="ec-id">
+    <div class="fmodal-fields">
+      <div><div class="field-label" style="font-size:10px;font-weight:700;color:#8899bb;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px;">Nume</div><input type="text" id="ec-label"></div>
+      <div class="flex-row" style="display:flex;gap:10px;align-items:flex-end;">
+        <div class="amount-field-wrap" style="flex:1;">
+          <div class="amount-field-top"><div class="field-label" style="font-size:10px;font-weight:700;color:#8899bb;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:0;">Sumă</div><div class="currency-toggle" style="display:flex;gap:4px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.045);border-radius:10px;padding:3px;"><button class="curr-btn active" id="ec-curr-ron" onclick="finSetCurrencyMode('ec','ron')">RON</button><button class="curr-btn" id="ec-curr-eur" onclick="finSetCurrencyMode('ec','eur')">EUR</button></div></div>
+          <div class="input-with-badge"><input type="number" id="ec-amount" inputmode="decimal" step="0.01" oninput="finUpdateConvertedHint('ec')"><span class="input-curr-badge ron" id="ec-curr-badge">LEI</span></div>
+          <div class="input-converted-hint" id="ec-converted-hint"></div>
+        </div>
+        <div style="flex:1;"><div class="field-label" style="font-size:10px;font-weight:700;color:#8899bb;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px;">Tip</div><select id="ec-type"><option value="monthly">Lunară 🗓</option><option value="annual">Anuală 📅</option></select></div>
+      </div>
+    </div>
+    <div class="fmodal-actions"><button class="fbtn fbtn-ghost" onclick="finCloseModal('mo-edit-cat')">Anulează</button><button class="fbtn fbtn-blue" onclick="finUpdateCat()">Salvează</button></div>
+  </div>
+</div>
+
+<div class="foverlay fin-scope" id="mo-subcat">
+  <div class="fmodal">
+    <div class="fmodal-handle"></div>
+    <div class="fmodal-title">➕ Subcategorie</div>
+    <input type="hidden" id="sub-parent-id">
+    <div class="fmodal-fields">
+      <div><div class="field-label" style="font-size:10px;font-weight:700;color:#8899bb;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px;">Nume</div><input type="text" id="sub-label" placeholder="ex: 📶 SIM 1"></div>
+      <div class="amount-field-wrap">
+        <div class="amount-field-top"><div class="field-label" style="font-size:10px;font-weight:700;color:#8899bb;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:0;">Sumă</div><div class="currency-toggle" style="display:flex;gap:4px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.045);border-radius:10px;padding:3px;"><button class="curr-btn active" id="sub-curr-ron" onclick="finSetCurrencyMode('sub','ron')">RON</button><button class="curr-btn" id="sub-curr-eur" onclick="finSetCurrencyMode('sub','eur')">EUR</button></div></div>
+        <div class="input-with-badge"><input type="number" id="sub-amount" placeholder="ex: 35" inputmode="decimal" step="0.01" oninput="finUpdateConvertedHint('sub')"><span class="input-curr-badge ron" id="sub-curr-badge">LEI</span></div>
+        <div class="input-converted-hint" id="sub-converted-hint"></div>
+      </div>
+    </div>
+    <div class="fmodal-actions"><button class="fbtn fbtn-ghost" onclick="finCloseModal('mo-subcat')">Anulează</button><button class="fbtn fbtn-blue" onclick="finSaveSubcat()">Adaugă</button></div>
+  </div>
+</div>
+
+<div class="foverlay fin-scope" id="mo-edit-subcat">
+  <div class="fmodal">
+    <div class="fmodal-handle"></div>
+    <div class="fmodal-title">✏️ Editează Subcategorie</div>
+    <input type="hidden" id="es-id"><input type="hidden" id="es-parent-id">
+    <div class="fmodal-fields">
+      <div><div class="field-label" style="font-size:10px;font-weight:700;color:#8899bb;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px;">Nume</div><input type="text" id="es-label"></div>
+      <div class="amount-field-wrap">
+        <div class="amount-field-top"><div class="field-label" style="font-size:10px;font-weight:700;color:#8899bb;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:0;">Sumă</div><div class="currency-toggle" style="display:flex;gap:4px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.045);border-radius:10px;padding:3px;"><button class="curr-btn active" id="es-curr-ron" onclick="finSetCurrencyMode('es','ron')">RON</button><button class="curr-btn" id="es-curr-eur" onclick="finSetCurrencyMode('es','eur')">EUR</button></div></div>
+        <div class="input-with-badge"><input type="number" id="es-amount" inputmode="decimal" step="0.01" oninput="finUpdateConvertedHint('es')"><span class="input-curr-badge ron" id="es-curr-badge">LEI</span></div>
+        <div class="input-converted-hint" id="es-converted-hint"></div>
+      </div>
+    </div>
+    <div class="fmodal-actions"><button class="fbtn fbtn-ghost" onclick="finCloseModal('mo-edit-subcat')">Anulează</button><button class="fbtn fbtn-blue" onclick="finUpdateSubcat()">Salvează</button></div>
+  </div>
+</div>
+
+<div class="foverlay fin-scope" id="mo-export">
+  <div class="fmodal">
+    <div class="fmodal-handle"></div>
+    <div class="fmodal-title">📦 Descarcă Backup (CSV)</div>
+    <div class="fmodal-fields">
+      <button class="fbtn fbtn-blue" style="width:100%;padding:14px;border-radius:16px;" onclick="finExportTableCSV('fd_settings')">⬇️ fd_settings.csv</button>
+    </div>
+    <div class="fmodal-actions"><button class="fbtn fbtn-ghost" onclick="finCloseModal('mo-export')" style="width:100%;">Închide</button></div>
+  </div>
+</div>
 
 <!-- FAB REFRESH (unic, shared) -->
 <button class="fab-refresh" id="fab-refresh" onclick="handleFabRefresh()" title="Actualizează datele" aria-label="Actualizează datele">

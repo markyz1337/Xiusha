@@ -215,6 +215,8 @@ body::before{
 .survival-item:not(:last-child){padding-bottom:2px;}
 
 .survival-lbl{color:var(--dim);max-width:60%;line-height:1.3;}
+.survival-item.no-val .survival-lbl{max-width:100%;}
+
 .survival-val{font-weight:700;color:var(--gold-l);text-align:right;max-width:40%;}
 .survival-val.red-text{color:var(--red);}
 .survival-val.green-text{color:var(--green);}
@@ -1437,14 +1439,16 @@ function calculateSurvival(){
   const crashExp=document.createElement('div');
   crashExp.id='crash-explain';
   crashExp.style.cssText='padding:8px 0 4px;width:100%;box-sizing:border-box;';
+  crashEl.style.display='none';
+  crashEl.closest('.survival-item').classList.add('no-val');
+
   if(leftCash<=0){
-    crashEl.innerHTML='<span class="survival-val red-text">0 ani (toți banii tăi sunt investiți)</span>';
-    crashExp.innerHTML=`<div style="background:rgba(224,112,112,0.06);border:1px solid rgba(224,112,112,0.15);border-radius:10px;padding:10px 12px;font-size:11px;color:var(--dim);line-height:1.6;box-sizing:border-box;">🛡️ Tot capitalul tău (${Math.round(survivalTotal).toLocaleString('ro-RO')} lei) e mai mic sau egal cu suma investită în obligațiuni (${Math.round(totalBondsAmt).toLocaleString('ro-RO')} lei).</div>`;
+    crashExp.innerHTML=`<div style="background:rgba(224,112,112,0.06);border:1px solid rgba(224,112,112,0.15);border-radius:10px;padding:10px 12px;font-size:11px;color:var(--dim);line-height:1.6;box-sizing:border-box;">🛡️ Tot capitalul tău (${Math.round(survivalTotal).toLocaleString('ro-RO')} lei) e mai mic sau egal cu suma investită în obligațiuni (${Math.round(totalBondsAmt).toLocaleString('ro-RO')} lei).<br><strong style="color:var(--red);">0 ani (toți banii tăi sunt investiți)</strong></div>`;
   } else {
     const yearsCrash=leftCash/(survivalSpent*12);
-    crashEl.textContent=formatYearsAndAge(yearsCrash);
     crashExp.innerHTML=`<div style="background:rgba(224,112,112,0.06);border:1px solid rgba(224,112,112,0.15);border-radius:10px;padding:10px 12px;font-size:11px;color:var(--dim);line-height:1.6;box-sizing:border-box;">🛡️ Cash rămas (${Math.round(survivalTotal).toLocaleString('ro-RO')} − ${Math.round(totalBondsAmt).toLocaleString('ro-RO')} = ${Math.round(leftCash).toLocaleString('ro-RO')} lei) ÷ ${Math.round(survivalSpent).toLocaleString('ro-RO')} lei/lună:<br><strong style="color:var(--gold-l);">${formatYearsAndAge(yearsCrash)}</strong></div>`;
   }
+
   crashEl.closest('.survival-item').after(crashExp);
 
   const crashSep=document.createElement('div');
@@ -1453,7 +1457,10 @@ function calculateSurvival(){
   crashExp.after(crashSep);
 
   const yearsPure=survivalTotal/(survivalSpent*12);
-  pureEl.textContent=formatYearsAndAge(yearsPure);
+  pureEl.style.display='none';
+  pureEl.closest('.survival-item').classList.add('no-val');
+
+
   const oldPureExp=document.getElementById('pure-explain');if(oldPureExp)oldPureExp.remove();
   const pureExp=document.createElement('div');
   pureExp.id='pure-explain';

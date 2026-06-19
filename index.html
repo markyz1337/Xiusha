@@ -2070,9 +2070,18 @@ function finRecalcAll(){
   _finNetMonthlyRON=monthlyAvgTotal;
   document.getElementById('fin-net-val').textContent=`${finFmt(monthlyAvgTotal)} lei`;
   document.getElementById('fin-net-val-eur').textContent=finFmtEurSell(monthlyAvgTotal);
+
+  // legătură directă, în timp real, cu tabul Acasă (BondFlow)
+  baseExpense=monthlyAvgTotal;
+  survivalTotal=totalRON;
+  const fundsInput=document.getElementById('survival-total-funds');
+  if(fundsInput)fundsInput.value=totalRON;
+  renderDash();
+
   clearTimeout(_finMetricsSaveTimeout);
   _finMetricsSaveTimeout=setTimeout(()=>finSaveMetrics(totalRON,monthlyAvgTotal),1200);
 }
+
 
 function finRowsToCSV(rows){if(!rows||!rows.length)return'';const cols=Object.keys(rows[0]);const esc=v=>{if(v===null||v===undefined)return'';const s=typeof v==='object'?JSON.stringify(v):String(v);if(/[",\n]/.test(s))return'"'+s.replace(/"/g,'""')+'"';return s;};const lines=[cols.join(',')];rows.forEach(r=>lines.push(cols.map(c=>esc(r[c])).join(',')));return lines.join('\n');}
 function finDownloadCSV(filename,csvContent){const blob=new Blob(['\uFEFF'+csvContent],{type:'text/csv;charset=utf-8;'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);}

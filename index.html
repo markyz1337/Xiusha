@@ -1446,7 +1446,11 @@ function calculateSurvival(){
     crashExp.innerHTML=`<div style="background:rgba(224,112,112,0.06);border:1px solid rgba(224,112,112,0.15);border-radius:10px;padding:10px 12px;font-size:11px;color:var(--dim);line-height:1.6;box-sizing:border-box;">🛡️ Tot capitalul tău (${Math.round(survivalTotal).toLocaleString('ro-RO')} lei) e mai mic sau egal cu suma investită în obligațiuni (${Math.round(totalBondsAmt).toLocaleString('ro-RO')} lei).<br><strong style="color:var(--red);">0 ani (toți banii tăi sunt investiți)</strong></div>`;
   } else {
     const yearsCrash=leftCash/(survivalSpent*12);
-    crashExp.innerHTML=`<div style="background:rgba(224,112,112,0.06);border:1px solid rgba(224,112,112,0.15);border-radius:10px;padding:10px 12px;font-size:11px;color:var(--dim);line-height:1.6;box-sizing:border-box;">🛡️ Cash rămas (${Math.round(survivalTotal).toLocaleString('ro-RO')} − ${Math.round(totalBondsAmt).toLocaleString('ro-RO')} = ${Math.round(leftCash).toLocaleString('ro-RO')} lei) ÷ ${Math.round(survivalSpent).toLocaleString('ro-RO')} lei/lună:<br><strong style="color:var(--gold-l);">${formatYearsAndAge(yearsCrash)}</strong></div>`;
+    crashExp.innerHTML=`
+<div style="background:rgba(224,112,112,0.06);border:1px solid rgba(224,112,112,0.15);border-radius:10px;padding:10px 12px;font-size:11px;color:var(--dim);line-height:1.6;box-sizing:border-box;">
+        📌 Cash rămas (${Math.round(survivalTotal).toLocaleString('ro-RO')} lei total − ${Math.round(totalBondsAmt).toLocaleString('ro-RO')} lei investiți = ${Math.round(leftCash).toLocaleString('ro-RO')} lei) împărțit la cheltuielile lunare de ${Math.round(survivalSpent).toLocaleString('ro-RO')} lei/lună: 
+        <strong style="color:var(--gold-l);">${formatYearsAndAge(yearsCrash)}</strong>
+      </div>`;
   }
 
   crashEl.closest('.survival-item').after(crashExp);
@@ -1465,7 +1469,11 @@ function calculateSurvival(){
   const pureExp=document.createElement('div');
   pureExp.id='pure-explain';
   pureExp.style.cssText='padding:8px 0 4px;width:100%;box-sizing:border-box;';
-  pureExp.innerHTML=`<div style="background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.15);border-radius:10px;padding:10px 12px;font-size:11px;color:var(--dim);line-height:1.6;box-sizing:border-box;">💸 ${Math.round(survivalTotal).toLocaleString('ro-RO')} lei ÷ ${Math.round(survivalSpent).toLocaleString('ro-RO')} lei/lună:<br><strong style="color:var(--gold-l);">${formatYearsAndAge(yearsPure)}</strong></div>`;
+  pureExp.innerHTML=`
+<div style="background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.15);border-radius:10px;padding:10px 12px;font-size:11px;color:var(--dim);line-height:1.6;box-sizing:border-box;">
+      📌 Tot capitalul tău (${Math.round(survivalTotal).toLocaleString('ro-RO')} lei) împărțit la cheltuielile lunare de ${Math.round(survivalSpent).toLocaleString('ro-RO')} lei/lună, fără niciun câștig din dobânzi:<br>
+      <strong style="color:var(--gold-l);">${formatYearsAndAge(yearsPure)}</strong>
+    </div>`;
   pureEl.closest('.survival-item').after(pureExp);
   // ultima categorie (Fără investiții) nu primește separator după ea
 
